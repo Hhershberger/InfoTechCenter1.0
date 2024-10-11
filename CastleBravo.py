@@ -9,6 +9,9 @@ RESET = '\033[0m'  # Reset to default color
 # Printing a welcome message to the console in blue
 print(BLUE + "\nWelcome to InfoTechCenter V1.0" + RESET)  # Use ANSI code for blue text
 
+TimeToSleep= 2 # variable to set teh time Library to 2 seconds
+time.sleep(TimeToSleep) # sets to TimeToSleep
+
 # Initializing variables
 x = 0  # x is used as a counter to control the loop iterations
 ellipsis = 0  # ellipsis controls the number of dots to display in the boot message
@@ -28,4 +31,3 @@ while x != 20:  # Loop will run until x equals 20 (20 iterations)
     # When the counter reaches 20, the system boot message is complete
     if x == 20:
         print("\n\n" + BLUE + "Operating System Booted up - Retina Scanned - Access Granted" + RESET)  # Final message after boot completes
-
