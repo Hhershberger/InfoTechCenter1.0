@@ -6,9 +6,15 @@ print("Weather Branch\n")
 import random
 from time import sleep
 
-def weather():
-    WeatherForecast=["snowing", "blizzard", "rainy", "windy", "sunny"]
+def Weather():
+    WeatherForecast=["snowy", "blizzard", "rainy", "windy", "sunny"]
     WeatherCondition=random.choice(WeatherForecast)
     return WeatherCondition
 
-print(weather())
+WeatherAlert= Weather()
+
+def VRS():
+    if WeatherAlert==("snowy"):
+        print("\nThe National Weather Service has updated our alarm by 30 minutes because"
+              " of the forecast of", WeatherAlert, "weather conditions.")
+print(VRS())
