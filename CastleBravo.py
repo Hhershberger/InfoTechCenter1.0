@@ -6,63 +6,39 @@ print("Weather Branch\n")
 import random  # To randomly select weather conditions
 from time import sleep  # To simulate delay in output
 
-
 # Function to get a random weather condition
 def Weather():
     # List of possible weather conditions
-    WeatherForecast = ["snowy", "blizzard", "rainy", "windy", "icy", "sunny"]
+    WeatherForecast = ["snowy", "blizzard", "rainy", "windy", "sunny"]
     # Randomly select a weather condition from the list
-    WeatherCondition = random.choice(WeatherForecast)
-    return WeatherCondition
-
+    return random.choice(WeatherForecast)
 
 # Call the Weather function and store the returned condition in WeatherAlert
 WeatherAlert = Weather()
 
+# Dictionary to store weather conditions, alarm updates, and speed limits
+weather_conditions = {
+    "snowy": (30, 55),
+    "blizzard": (45, 45),
+    "rainy": (15, 65),
+    "windy": (5, 70),
+    "icy": (50, 30)  # Note: icy is not in the forecast list, but handled just in case
+}
 
 # Function to simulate Vehicle Restriction System (VRS) behavior based on weather
 def VRS():
-    # If the weather is snowy, update alarm and set speed limit
-    if WeatherAlert == "snowy":
-        print("\nThe National Weather Service has updated our alarm by 30 minutes because"
-              " of the forecast of", WeatherAlert, "weather conditions.")
+    if WeatherAlert in weather_conditions:
+        # Get alarm delay and speed limit based on weather condition
+        alarm_delay, speed_limit = weather_conditions[WeatherAlert]
+        print(f"\nThe National Weather Service has updated our alarm by {alarm_delay} minutes because"
+              f" of the forecast of {WeatherAlert} weather conditions.")
         sleep(1)  # Simulate delay
-        print("\nVRS system has been engaged only allowing you to drive 55mph")
-
-    # If the weather is blizzard, update alarm and set speed limit
-    elif WeatherAlert == "blizzard":
-        print("\nThe National Weather Service has updated our alarm by 45 minutes because"
-              " of the forecast of", WeatherAlert, "weather conditions.")
-        sleep(1)  # Simulate delay
-        print("\nVRS system has been engaged only allowing you to drive 45mph")
-
-    # If the weather is rainy, update alarm and set speed limit
-    elif WeatherAlert == "rainy":
-        print("\nThe National Weather Service has updated our alarm by 15 minutes because"
-              " of the forecast of", WeatherAlert, "weather conditions.")
-        sleep(1)  # Simulate delay
-        print("\nVRS system has been engaged only allowing you to drive 65mph")
-
-    # If the weather is windy, update alarm and set speed limit
-    elif WeatherAlert == "windy":
-        print("\nThe National Weather Service has updated our alarm by 5 minutes because"
-              " of the forecast of", WeatherAlert, "weather conditions.")
-        sleep(1)  # Simulate delay
-        print("\nVRS system has been engaged only allowing you to drive 70mph")
-
-    # If the weather is icy, update alarm and set speed limit
-    elif WeatherAlert == "icy":
-        print("\nThe National Weather Service has updated our alarm by 50 minutes because"
-              " of the forecast of", WeatherAlert, "weather conditions.")
-        sleep(1)  # Simulate delay
-        print("\nVRS system has been engaged only allowing you to drive 30mph")
-
-    # If no special weather condition, print default message
+        print(f"\nVRS system has been engaged only allowing you to drive {speed_limit}mph")
     else:
-        print("\nThe NWS is calling for", WeatherAlert, "skies. Drive carefully to get to your destination")
+        # Handle default case for normal/sunny weather
+        print(f"\nThe NWS is calling for {WeatherAlert} skies. Drive carefully to get to your destination.")
         sleep(1)  # Simulate delay
         print("\nVRS system has been disengaged")
 
-
-# Call the VRS function and print the result
-print(VRS())
+# Call the VRS function
+VRS()
