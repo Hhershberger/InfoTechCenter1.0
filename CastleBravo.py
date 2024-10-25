@@ -1,13 +1,16 @@
+
 # Importing the necessary libraries
 import sys  # sys module provides access to system-specific parameters and functions
 import time  # time module provides time-related functions (e.g., sleep)
+import random  # To randomly select weather conditions
+from time import sleep  # To simulate delay in output
 
 # ANSI escape code for blue text
 BLUE = '\033[94m'  # Bright blue
 RESET = '\033[0m'  # Reset to default color
 
 # Printing a welcome message to the console in blue
-print(BLUE + "\nWelcome to InfoTechCenter V1.0" + RESET)  # Use ANSI code for blue text
+print(BLUE + "\nWelcome to InfoTechCenter V1.0." + RESET)  # Use ANSI code for blue text
 
 TimeToSleep= 2 # variable to set teh time Library to 2 seconds
 time.sleep(TimeToSleep) # sets to TimeToSleep
@@ -30,15 +33,13 @@ while x != 20:  # Loop will run until x equals 20 (20 iterations)
 
     # When the counter reaches 20, the system boot message is complete
     if x == 20:
-        print("\n\n" + BLUE + "Operating System Booted up - Retina Scanned - Access Granted" + RESET)  # Final message after boot completes
+        print("\n\n" + BLUE + "Operating System Booted up - Retina Scanned - Access Granted." + RESET)  # Final message after boot completes
 
 # Print section header for weather forecast branch
 print("\n**********************************************************************")
-print("Weather Branch\n")
+print("Weather Branch.\n")
 
-# Importing necessary libraries
-import random  # To randomly select weather conditions
-from time import sleep  # To simulate delay in output
+
 
 # Function to get a random weather condition
 def Weather():
@@ -67,12 +68,60 @@ def VRS():
         print(f"\nThe National Weather Service has updated our alarm by {alarm_delay} minutes because"
               f" of the forecast of {WeatherAlert} weather conditions.")
         sleep(1)  # Simulate delay
-        print(f"\nVRS system has been engaged only allowing you to drive {speed_limit}mph")
+        print(f"\nVRS system has been engaged only allowing you to drive {speed_limit}mph.")
     else:
         # Handle default case for normal/sunny weather
         print(f"\nThe NWS is calling for {WeatherAlert} skies. Drive carefully to get to your destination.")
         sleep(1)  # Simulate delay
-        print("\nVRS system has been disengaged")
+        print("\nVRS system has been disengaged.")
 
 # Call the VRS function
 VRS()
+
+# Print a decorative separator and section title
+print("\n**************************************************\n")
+print("Gasoline Branch.\n")
+
+# Import necessary modules
+import random
+from time import sleep
+
+
+# Function to randomly select a gas level from a predefined list
+def gasLevelGauge():
+    return random.choice(["Empty", "Low", "Quarter Tank", "Half Tank", "Three Quarter Tank", "Full"])
+
+
+# Function to randomly select a gas station from a predefined list
+def gasStations():
+    return random.choice(["Vp", "Shell", "Meijer", "Sam's Club", "Marathon", "Mobile", "Speedway", "Circle K"])
+
+
+# Function to provide alerts based on the current gas level
+def gasLevelAlert():
+    gasLevel = gasLevelGauge()  # Get the current gas level
+
+    # Predefine random distances to a gas station
+    milesLow = round(random.uniform(1, 25), 1)
+    milesQuarterTank = round(random.uniform(25.1, 50), 1)
+
+    # Conditions based on gas level to provide feedback
+    if gasLevel == "Empty":
+        print("***WARNING - YOU ARE ON EMPTY***\n")
+        sleep(2)
+        print("Calling Triple AAA")
+    elif gasLevel == "Low":
+        print("Your gas tank is Low: Check GPS for closest gas station.")
+        sleep(2)
+        print(f"The closest gas station is {gasStations()} in {milesLow} miles.")
+    elif gasLevel == "Quarter Tank":
+        print("Your gas tank is Quarter Tank: Check GPS for closest gas station.")
+        sleep(2)
+        print(f"The closest gas station is {gasStations()} in {milesQuarterTank} miles.")
+    else:
+        # For Half, Three Quarter, or Full, the user is reassured to enjoy their ride
+        print(f"Your gas tank is {gasLevel}: Please enjoy your ride.")
+print(gasLevelAlert())
+
+# Execute the function to display the gas level alert
+
